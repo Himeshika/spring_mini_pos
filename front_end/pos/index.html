@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Frosty Delights • Home</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        :root{
+            --bg:#f5f1ea;
+            --ink:#1f2937;
+            --muted:#6b7280;
+            --line:#e5e7eb;
+            --soft:#ffffff;
+
+            --brand:#f59e0b;
+            --brand2:#10b981;
+
+            --ok:#10b981;
+            --warn:#f59e0b;
+            --danger:#ef4444;
+
+            --dark:#1f2937;
+            --lightText:#e5e7eb;
+
+            --shadow: 0 10px 30px rgba(0,0,0,.08);
+        }
+
+        body{
+            background: var(--bg);
+            color: var(--ink);
+            min-height: 100vh;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .app-shell{ max-width: 1180px; }
+
+        /* Topbar */
+        .topbar{
+            background: var(--dark);
+            border-bottom: 4px solid var(--brand);
+        }
+        .brand{
+            font-weight: 900;
+            letter-spacing: .5px;
+            color: #fbbf24;
+        }
+        .nav-link{
+            font-weight:600;
+            color: var(--lightText) !important;
+            border-radius: 12px;
+            padding: 10px 12px !important;
+        }
+        .nav-link:hover, .nav-link.active{
+            color: #fbbf24 !important;
+            background: transparent;
+        }
+
+        /* Page */
+        .page{
+            padding: 28px 0 44px;
+        }
+
+        .page-title{
+            font-weight: 900;
+            color: var(--ink);
+        }
+        .page-sub{
+            color: var(--muted);
+            margin: 6px 0 0;
+        }
+
+        /* Panels */
+        .panel{
+            background: var(--soft);
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            box-shadow: var(--shadow);
+        }
+        .panel-head{
+            padding: 18px;
+            border-bottom: 1px solid var(--line);
+        }
+        .panel-body{
+            padding: 18px;
+        }
+        .label{
+            font-size: .82rem;
+            font-weight: 700;
+            color: var(--muted);
+            letter-spacing: .4px;
+            text-transform: uppercase;
+        }
+        .hline{
+            height: 1px;
+            background: var(--line);
+            margin: 14px 0;
+        }
+
+        /* Action list */
+        .action-list{
+            display: grid;
+            gap: 10px;
+        }
+        .action{
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            gap: 12px;
+            padding: 14px;
+            border-radius: 14px;
+            border: 1px solid var(--line);
+            background: #ffffff;
+            text-decoration: none;
+            color: inherit;
+            transition: transform .08s ease, border-color .12s ease, background .12s ease;
+        }
+        .action:hover{
+            transform: translateY(-1px);
+            background: #fff7ed;
+            border-color: #fed7aa;
+        }
+        .action-title{
+            margin: 0;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+        .action-desc{
+            margin: 2px 0 0;
+            color: var(--muted);
+            font-size: .92rem;
+        }
+
+        .pill{
+            font-size: .78rem;
+            font-weight: 700;
+            padding: 8px 10px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: #fff;
+            color: var(--muted);
+            white-space: nowrap;
+        }
+        .pill.primary{
+            border-color: #fed7aa;
+            background: #fff7ed;
+            color: var(--brand);
+        }
+        .pill.stock{
+            border-color: #a7f3d0;
+            background: #ecfdf5;
+            color: var(--ok);
+        }
+        .pill.flow{
+            border-color: #bbf7d0;
+            background: #f0fdf4;
+            color: var(--brand2);
+        }
+
+        /* Mini table */
+        .mini-table{
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border: 1px solid var(--line);
+            border-radius: 14px;
+        }
+        .mini-table th{
+            background: #f9fafb;
+            color: #374151;
+            font-size: .82rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            padding: 12px;
+            border-bottom: 1px solid var(--line);
+        }
+        .mini-table td{
+            padding: 12px;
+            border-bottom: 1px solid var(--line);
+            color: var(--ink);
+        }
+        .mini-table tr:last-child td{ border-bottom: 0; }
+
+        /* Status */
+        .status{
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            gap: 10px;
+            padding: 12px;
+            border-radius: 14px;
+            border: 1px solid var(--line);
+            background: #ffffff;
+        }
+        .status-left{
+            display:flex;
+            align-items:center;
+            gap: 10px;
+        }
+        .dot{
+            width: 10px; height: 10px;
+            border-radius: 999px;
+            background: var(--ok);
+            box-shadow: 0 0 0 6px rgba(16,185,129,.15);
+        }
+        .status b{ font-weight: 700; }
+        .status span{
+            color: var(--muted);
+            font-size: .92rem;
+        }
+
+        .footer{
+            margin-top: 18px;
+            color: var(--muted);
+            font-size: .92rem;
+        }
+    </style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg topbar">
+    <div class="container app-shell">
+        <a class="navbar-brand brand" href="#">Frosty Delights</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto gap-lg-2">
+                <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="pages/customer.html">Customer</a></li>
+                <li class="nav-item"><a class="nav-link" href="pages/item.html">Item</a></li>
+                <li class="nav-item"><a class="nav-link" href="pages/order.html">Order</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container app-shell page">
+    <div class="mb-4">
+        <h1 class="page-title">Point of Sale Dashboard</h1>
+        <p class="page-sub">
+            Use quick actions to manage customers, maintain inventory, and process orders.
+        </p>
+    </div>
+
+    <div class="row g-3 align-items-stretch">
+        <div class="col-lg-5">
+            <div class="panel h-100">
+                <div class="panel-head">
+                    <div class="label">Quick actions</div>
+                    <div class="mt-1 fw-bold" style="font-size:1.05rem;">Choose where to start</div>
+                </div>
+                <div class="panel-body">
+                    <div class="action-list">
+                        <a class="action" href="pages/order.html">
+                            <div>
+                                <p class="action-title">Process an Order</p>
+                                <p class="action-desc">Add items to cart and complete checkout.</p>
+                            </div>
+                            <span class="pill flow">Order Flow</span>
+                        </a>
+                        <a class="action" href="pages/item.html">
+                            <div>
+                                <p class="action-title">Manage Items</p>
+                                <p class="action-desc">Update pricing, stock, and records.</p>
+                            </div>
+                            <span class="pill stock">Inventory</span>
+                        </a>
+                        <a class="action" href="pages/customer.html">
+                            <div>
+                                <p class="action-title">Manage Customers</p>
+                                <p class="action-desc">Create, edit, remove customer info.</p>
+                            </div>
+                            <span class="pill primary">CRUD</span>
+                        </a>
+                    </div>
+
+                    <div class="hline"></div>
+
+                    <div class="status">
+                        <div class="status-left">
+                            <div class="dot"></div>
+                            <div>
+                                <b>Backend status</b><br/>
+                                <span>Connected (demo indicator)</span>
+                            </div>
+                        </div>
+                        <span class="pill">REST • JSON</span>
+                    </div>
+
+                    <div class="footer mt-3">
+                        Suggested flow: maintain items → add customers → place orders.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-7">
+            <div class="panel h-100">
+                <div class="panel-head d-flex align-items-start justify-content-between gap-2 flex-wrap">
+                    <div>
+                        <div class="label">Preview</div>
+                        <div class="mt-1 fw-bold" style="font-size:1.05rem;">Today’s activity (sample)</div>
+                    </div>
+                    <span class="pill">Auto totals supported</span>
+                </div>
+
+                <div class="panel-body">
+                    <table class="mini-table">
+                        <thead>
+                        <tr>
+                            <th style="width:28%;">Metric</th>
+                            <th style="width:22%;">Value</th>
+                            <th style="width:50%;">Notes</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Orders</td>
+                            <td>12</td>
+                            <td>Checkout flow through order module</td>
+                        </tr>
+                        <tr>
+                            <td>Low stock items</td>
+                            <td>3</td>
+                            <td>Update quantities in the item module</td>
+                        </tr>
+                        <tr>
+                            <td>New customers</td>
+                            <td>5</td>
+                            <td>Customer CRUD via REST endpoints</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="hline"></div>
+
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <div class="p-3" style="border:1px solid var(--line); border-radius:14px; background:#fff;">
+                                <div class="label">Backend</div>
+                                <div class="fw-bold mt-1">Spring Boot</div>
+                                <div class="mt-1" style="color:var(--muted); font-weight:650; font-size:.92rem;">Controllers • Services • JPA</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="p-3" style="border:1px solid var(--line); border-radius:14px; background:#fff;">
+                                <div class="label">API</div>
+                                <div class="fw-bold mt-1">REST + JSON</div>
+                                <div class="mt-1" style="color:var(--muted); font-weight:650; font-size:.92rem;">Standard HTTP methods</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="p-3" style="border:1px solid var(--line); border-radius:14px; background:#fff;">
+                                <div class="label">UI</div>
+                                <div class="fw-bold mt-1">Bootstrap</div>
+                                <div class="mt-1" style="color:var(--muted); font-weight:650; font-size:.92rem;">Responsive layout</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="footer mt-3">
+                        © Frosty Delights • University project UI
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
